@@ -1,6 +1,8 @@
 # TGExtra
 A simple Telegram iOS Tweak.
 
+To Open Tweak menu : Longpress screen with 3 finger (if no flex injected) of 4 fingers.
+
 ## Screenshots
 
 ![Screenshot 1](./screenshot1.png)
