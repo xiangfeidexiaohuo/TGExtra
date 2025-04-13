@@ -1,5 +1,5 @@
 # TGExtra
-A Telegram iOS Tweak
+A simple Telegram iOS Tweak.
 
 ## Screenshots
 
