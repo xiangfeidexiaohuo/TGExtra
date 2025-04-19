@@ -1,0 +1,32 @@
+[
+	{
+		"name" : "English",
+		"code" : "en",
+		"flag" : "🇺🇸"
+	},
+	{
+		"name" : "Chinese",
+		"code" : "cn",
+		"flag" : "🇨🇳"
+	},
+	{
+		"name" : "Russian",
+		"code" : "ru",
+		"flag" : "🇷🇺"
+	},
+	{
+		"name" : "Arabic",
+		"code" : "ar",
+		"flag" : "🇸🇦"
+	},
+	{
+		"name" : "French",
+		"code" : "fr",
+		"flag" : "🇫🇷"
+	},
+	{
+		"name" : "Spanish",
+		"code" : "es",
+		"flag" : "🇪🇸"
+	},
+]
