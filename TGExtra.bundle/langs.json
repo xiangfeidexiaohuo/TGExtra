@@ -29,4 +29,9 @@
 		"code" : "es",
 		"flag" : "🇪🇸"
 	},
+	{
+		"name" : "Japanese",
+		"code" : "ja",
+		"flag" : "🇯🇵"
+	},
 ]
