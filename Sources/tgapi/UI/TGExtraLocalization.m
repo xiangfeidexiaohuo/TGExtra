@@ -16,7 +16,7 @@
 	NSString *selectedLanguageCode = [[NSUserDefaults standardUserDefaults] stringForKey:@"TGExtraLanguage"];
 
 	if (!selectedLanguageCode) {
-		selectedLanguageCode = @"en";
+		selectedLanguageCode = @"cn";
 	}
 
 	// 先使用jbroot路径

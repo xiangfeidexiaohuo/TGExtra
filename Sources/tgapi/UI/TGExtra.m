@@ -265,7 +265,7 @@ typedef NS_ENUM(NSInteger, TABLE_VIEW_SECTIONS) {
 		}
 		else if (indexPath.row == 12) {
 			cell.textLabel.text = TGLoc(@"DISABLE_UPLOADING_ROUND_VIDEO_STATUS_TITLE");
-			cell.detailTextLabel.text = TGLoc(@"DISABLE_UPLOADING_ROUND_VIDEO_STATUS_TITLE");
+			cell.detailTextLabel.text = TGLoc(@"DISABLE_UPLOADING_ROUND_VIDEO_STATUS_SUBTITLE");
 		}
 		else if (indexPath.row == 13) {
 			cell.textLabel.text = TGLoc(@"DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_TITLE");
@@ -451,7 +451,7 @@ typedef NS_ENUM(NSInteger, TABLE_VIEW_SECTIONS) {
 			CGFloat savedLongitude = [defaults floatForKey:FAKE_LONGITUDE_KEY];
 			CGFloat savedLatitude = [defaults floatForKey:FAKE_LATITUDE_KEY];
 
-			NSString *savedCord = savedCord = [NSString stringWithFormat:@"lon :%f\nlat :%f", savedLongitude ? : 0, savedLatitude ? : 0];
+			NSString *savedCord = savedCord = [NSString stringWithFormat:@"经 :%f\n纬 :%f", savedLongitude ? : 0, savedLatitude ? : 0];
 
 			cell.textLabel.numberOfLines = 0;
 			cell.detailTextLabel.text = savedCord;
@@ -463,7 +463,7 @@ typedef NS_ENUM(NSInteger, TABLE_VIEW_SECTIONS) {
 	if (indexPath.section == 5) { // Language
 		cell = [self normalCellFromTableView:tableView];
 		if (indexPath.row == 0) {
-			cell.textLabel.text = @"Change Language";
+			cell.textLabel.text = TGLoc(@"CHANGE_LANGUNGE");
 			cell.detailTextLabel.text = @"";
 			cell.imageView.image = [UIImage systemImageNamed:@"globe"];
 			cell.imageView.tintColor = [self dynamicColorBW];
@@ -481,11 +481,11 @@ typedef NS_ENUM(NSInteger, TABLE_VIEW_SECTIONS) {
 		cell = [self normalCellFromTableView:tableView];
 
 		if (indexPath.row == 0) {
-			cell.textLabel.text = @"Chocolate Fluffy (Dumb Whore)";
-			cell.detailTextLabel.text = @"Developer";
+			cell.textLabel.text = TGLoc(@"DEVLOPDER_TITLE");
+			cell.detailTextLabel.text = TGLoc(@"DEVLOPDER_SUBTITLE");
 			cell.detailTextLabel.textColor = [UIColor lightGrayColor];
-			NSData *imageData = [[NSData alloc] initWithBase64EncodedString:CHOCOPNG options:NSDataBase64DecodingIgnoreUnknownCharacters];
-			cell.imageView.image = [UIImage imageWithData:imageData scale:2.0];
+			cell.imageView.image = [UIImage systemImageNamed:@"face.smiling"];
+			cell.imageView.tintColor = [self dynamicColorBW];
 			cell.imageView.layer.cornerRadius = 40/8;
 			cell.imageView.layer.masksToBounds = YES;
 			cell.accessoryView = nil;
@@ -493,7 +493,7 @@ typedef NS_ENUM(NSInteger, TABLE_VIEW_SECTIONS) {
 		}
 		else if (indexPath.row == 1) {
 			cell.textLabel.text = TGLoc(@"DISCLAIMER");
-			cell.detailTextLabel.text = @"A note from whore";
+			cell.detailTextLabel.text = TGLoc(@"DISCLAIMER_SUBTITLE");
 			cell.imageView.image = [UIImage systemImageNamed:@"note.text"];
 			cell.imageView.tintColor = [self dynamicColorBW];
 			cell.accessoryView = nil;
@@ -532,7 +532,7 @@ typedef NS_ENUM(NSInteger, TABLE_VIEW_SECTIONS) {
 
     if (indexPath.section == CREDITS) {
 		if (indexPath.row == 0) {
-			NSString *base64String = @"aHR0cHM6Ly90Lm1lL3VsdGltYXRlUG9pc29u";
+			NSString *base64String = @"aHR0cHM6Ly90Lm1lL2FlODZfaW9z";
 	        NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
 	        NSString *decodedURL = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
 
@@ -679,12 +679,12 @@ typedef NS_ENUM(NSInteger, TABLE_VIEW_SECTIONS) {
         [[NSFileManager defaultManager] removeItemAtPath:uglyFixDirectory error:&error];
 
         if (error) {
-            NSLog(@"Failed to remove cache directory: %@", error.localizedDescription);
+            NSLog(@"无法删除缓存目录：%@", error.localizedDescription);
         } else {
-            NSLog(@"Successfully cleared cache: %@", uglyFixDirectory);
+            NSLog(@"成功清除缓存：%@", uglyFixDirectory);
         }
 
-		self.cacheSize = @"Cleared";
+		self.cacheSize = @"已清除";
 
         // Reload section or row as needed
         dispatch_async(dispatch_get_main_queue(), ^{

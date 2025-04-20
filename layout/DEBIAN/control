@@ -1,8 +1,8 @@
-Package: com.choco.tg
-Name: TGExtra
-Version: 1.2
+Package: com.dao.tgextra
+Name: TGExtra(rootless)
+Version: 1.2-2
 Architecture: iphoneos-arm
-Description: A simple Tweak For Telegram iOS
+Description: 支持Telegram、Swiftgram的功能插件，能保存频道限制下载文件、禁用广告等；底部「设置」—>长按倒数第三个按钮打开插件；如果打不开插件设置，先把语言切换自带的英文或者香港中文等—>再长按倒数第三个按钮；添加三指长按手势打开设置。
 Maintainer: waruhachi
-Author: choco
-Section: Tweaks
+Section: 嗨-工具
+Conflicts: com.choco.tg

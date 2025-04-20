@@ -1,5 +1,3 @@
-
-
 /* Sections */
 "GHOST_MODE_SECTION_HEADER" = "Modalità Fantasma";
 "READ_RECEIPT_SECTION_HEADER" = "Conferme di lettura";
@@ -47,6 +45,7 @@
 "DISABLE_RECORDING_ROUND_VIDEO_STATUS_SUBTITLE" = "Nascondi quando stai registrando un video rotondo.";
 
 "DISABLE_UPLOADING_ROUND_VIDEO_STATUS_TITLE" = "Disattiva stato di caricamento video rotondo";
+"DISABLE_UPLOADING_ROUND_VIDEO_STATUS_SUBTITLE" ="Disattiva stato di caricamento video rotondo";  
 
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_TITLE" = "Disattiva stato di parola in chiamata di gruppo";
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_SUBTITLE" = "Nascondi quando stai parlando in una chiamata di gruppo.";
@@ -101,3 +100,8 @@
 "DISCLAIMER" = "Avvertenza";
 
 "AUTHOR_MESSAGE" = "Questa modifica per Telegram è solo per uso personale ed educativo. Non siamo in alcun modo affiliati con Telegram. Tutti i marchi, incluso il nome e il logo di Telegram, appartengono ai rispettivi proprietari. Non usare questo tweak per infrangere le regole, fare i furbi o violare i termini di Telegram — non siamo responsabili se qualcosa va storto. Usalo a tuo rischio e pericolo. \n\nInoltre… se ti piace, fammelo sapere. Vivo seriamente di approvazione. \n\nE se vuoi supportarmi con una donazione di uno o due dollari, contattami su Telegram.";
+
+"CHANGE_LANGUNGE" = "Change Language";
+"DEVLOPDER_TITLE" = "Chocolate Fluffy (Dumb Whore)";
+"DEVLOPDER_SUBTITLE" = "Developer";
+"DISCLAIMER_SUBTITLE" = "A note from whore";
