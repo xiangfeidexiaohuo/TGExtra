@@ -46,6 +46,7 @@
 "DISABLE_RECORDING_ROUND_VIDEO_STATUS_SUBTITLE" = "No mostrar que estás grabando un video redondo.";
 
 "DISABLE_UPLOADING_ROUND_VIDEO_STATUS_TITLE" = "Desactivar estado de carga de video redondo";
+"DISABLE_UPLOADING_ROUND_VIDEO_STATUS_SUBTITLE" = "Desactivar estado de carga de video redondo";  
 
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_TITLE" = "Desactivar estado de habla en llamada grupal";
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_SUBTITLE" = "No mostrar que estás hablando en una llamada grupal.";
@@ -102,3 +103,8 @@
 "DISCLAIMER" = "Aviso legal";
 
 "AUTHOR_MESSAGE" = "Este ajuste de Telegram es solo para uso personal y educativo. No estamos afiliados con Telegram de ninguna manera. Todas las marcas registradas, incluido el nombre y logo de Telegram, pertenecen a sus respectivos propietarios. No uses esto para romper reglas, hacer cosas sospechosas o violar los términos de Telegram — no nos hacemos responsables si algo sale mal. Úsalo bajo tu propio riesgo.\n\nAdemás... si te gusta, dilo. En serio, vivo del reconocimiento.\n\nY también... si quieres apoyarme donando uno o dos dólares, contáctame por Telegram.";
+
+"CHANGE_LANGUNGE" = "Change Language";
+"DEVLOPDER_TITLE" = "Chocolate Fluffy (Dumb Whore)";
+"DEVLOPDER_SUBTITLE" = "Developer";
+"DISCLAIMER_SUBTITLE" = "A note from whore";

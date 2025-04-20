@@ -45,6 +45,7 @@
 "DISABLE_RECORDING_ROUND_VIDEO_STATUS_SUBTITLE" = "隱藏你正在錄製圓形影片的狀態";
 
 "DISABLE_UPLOADING_ROUND_VIDEO_STATUS_TITLE" = "停用上傳圓形影片狀態";
+"DISABLE_UPLOADING_ROUND_VIDEO_STATUS_SUBTITLE" = "停用你正在上傳圓形影片的狀態。"; 
 
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_TITLE" = "停用群組通話說話狀態";
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_SUBTITLE" = "隱藏你正在群組通話中說話的狀態";
@@ -99,3 +100,8 @@
 "DISCLAIMER" = "免責聲明";
 
 "AUTHOR_MESSAGE" = "本Telegram調整工具僅限於個人及教育用途。我們與Telegram無任何關聯。所有商標，包括Telegram名稱及標誌，皆屬其各自所有者所有。請勿使用本工具違反規則、進行不當行為或違反Telegram的服務條款。若因使用本工具而產生任何問題，我們概不負責，使用者須自行承擔風險。\n \n此外，若您對本工具感到滿意，歡迎提供意見或反饋，您的支持對我們至關重要。\n \n如有意透過小額捐款支持我，請透過Telegram與我聯繫。";
+
+"CHANGE_LANGUNGE" = "Change Language";
+"DEVLOPDER_TITLE" = "Chocolate Fluffy (Dumb Whore)";
+"DEVLOPDER_SUBTITLE" = "Developer";
+"DISCLAIMER_SUBTITLE" = "A note from whore";

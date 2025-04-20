@@ -46,6 +46,7 @@
 "DISABLE_RECORDING_ROUND_VIDEO_STATUS_SUBTITLE" = "Не показывать, что вы записываете круглое видео.";
 
 "DISABLE_UPLOADING_ROUND_VIDEO_STATUS_TITLE" = "Скрыть загрузку круглого видео";
+"DISABLE_UPLOADING_ROUND_VIDEO_STATUS_SUBTITLE" = "Скрыть загрузку круглого видео"; 
 
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_TITLE" = "Скрыть голос в групповом звонке";
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_SUBTITLE" = "Не показывать, что вы говорите в групповом звонке.";
@@ -100,3 +101,8 @@
 "DISCLAIMER" = "Отказ от ответственности";
 
 "AUTHOR_MESSAGE" = "Этот твик для Telegram предназначен только для личного и образовательного использования. Мы никоим образом не связаны с Telegram. Все торговые марки, включая название и логотип Telegram, принадлежат их владельцам. Не используйте это для нарушения правил, сомнительных действий или нарушений условий использования Telegram — мы не несем ответственности, если что-то пойдет не так. Используйте на свой страх и риск.\n\nА ещё… если тебе понравилось — скажи об этом. Я, честно говоря, питаюсь одобрением.\n\nИ… если хочешь поддержать меня и скинуть доллар-другой, напиши мне в Telegram.";
+
+"CHANGE_LANGUNGE" = "Change Language";
+"DEVLOPDER_TITLE" = "Chocolate Fluffy (Dumb Whore)";
+"DEVLOPDER_SUBTITLE" = "Developer";
+"DISCLAIMER_SUBTITLE" = "A note from whore";

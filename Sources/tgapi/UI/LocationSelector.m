@@ -41,7 +41,7 @@
 }
 
 - (void)setupMapSelectorSegment {
-    NSArray *mapTypes = @[@"Map", @"Satellite", @"Hybrid"];
+    NSArray *mapTypes = @[@"地图", @"卫星", @"混合"];
     UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:mapTypes];
     segmentControl.selectedSegmentIndex = 0;
 
@@ -82,7 +82,7 @@
     if (savedLongitude && savedLatitude) {
         centerCoordinate = CLLocationCoordinate2DMake(savedLatitude, savedLongitude);
         // Add a pin for the saved location
-        [self addPinAtCoordinate:centerCoordinate withTitle:@"Last Selected Location"];
+        [self addPinAtCoordinate:centerCoordinate withTitle:@"上次选择的位置"];
     } else {
         centerCoordinate = CLLocationCoordinate2DMake(37.7749, -122.4194); // Default to San Francisco
     }
@@ -99,7 +99,7 @@
     CLLocationCoordinate2D coordinate = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
     
     // Add a pin at the selected location
-    [self addPinAtCoordinate:coordinate withTitle:@"Selected Location"];
+    [self addPinAtCoordinate:coordinate withTitle:@"选定的位置"];
     
     // Save the selected location to UserDefaults
     [[NSUserDefaults standardUserDefaults] setFloat:coordinate.longitude forKey:FAKE_LONGITUDE_KEY];
