@@ -4,8 +4,8 @@ permissions:
     contents: write
 
 on:
-    release:
-        types: [published]
+  repository_dispatch:
+  workflow_dispatch:
 
 jobs:
     cleanup:

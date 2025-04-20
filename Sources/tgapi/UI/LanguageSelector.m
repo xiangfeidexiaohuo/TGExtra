@@ -27,16 +27,16 @@
     if (jsonDecodeError || !langs) {
         self.languages = @[
            @{
-               @"name": @"English",
-               @"code": @"en",
-               @"flag": @"🇺🇸"
+               @"name": @"Chinese",
+               @"code": @"cn",
+               @"flag": @"🇨🇳"
            }
         ];
     } else {
         self.languages = langs;
     }
 
-	self.title = @"Change Language";
+	self.title = @"🇨🇳刀刀";
 	[self loadLanguages];
     [self setupTableView];
 }
@@ -127,7 +127,7 @@
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:languageData[@"path"]];
 
     if (!dict) {
-        [self showAlertWithTitle:@"Error" message:@"Failed to load language localization data"];
+        [self showAlertWithTitle:@"错误" message:@"无法加载本地化语言数据"];
         return;
     }
 
@@ -148,7 +148,7 @@
 
         [tableView reloadData];
     } else {
-        [self showAlertWithTitle:@"Error" message:@"Failed to load the language."];
+        [self showAlertWithTitle:@"错误" message:@"无法加载语言"];
     }
 }
 
@@ -157,7 +157,7 @@
                                                                    message:message
                                                             preferredStyle:UIAlertControllerStyleAlert];
 
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的"
                                                        style:UIAlertActionStyleDefault
                                                      handler:nil];
 

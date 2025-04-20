@@ -45,6 +45,7 @@
 "DISABLE_RECORDING_ROUND_VIDEO_STATUS_SUBTITLE" = "عدم عرض أنك تقوم بتسجيل فيديو دائري.";
 
 "DISABLE_UPLOADING_ROUND_VIDEO_STATUS_TITLE" = "تعطيل حالة تحميل الفيديو الدائري";
+"DISABLE_UPLOADING_ROUND_VIDEO_STATUS_SUBTITLE" =  "تعطيل حالة تحميل الفيديو الدائري";
 
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_TITLE" = "تعطيل التحدث في المكالمات الجماعية";
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_SUBTITLE" = "عدم عرض أنك تتحدث في مكالمة جماعية.";
@@ -97,3 +98,8 @@
 "CANCEL" = "إلغاء";
 
 "AUTHOR_MESSAGE" = "هذا التعديل على تيليجرام مخصص للاستخدام الشخصي والتعليمي فقط. نحن لسنا تابعين لتيليجرام بأي شكل من الأشكال. جميع العلامات التجارية، بما في ذلك اسم تيليجرام وشعاره، تعود لأصحابها. لا تستخدم هذا التعديل لكسر القوانين أو القيام بأي شيء مريب أو مخالف لشروط استخدام تيليجرام — نحن غير مسؤولين إذا حدث أي شيء غير متوقع. استخدمه على مسؤوليتك الخاصة.\n\nأيضًا... إذا أعجبك، قل شيئًا. أنا حرفيًا أعيش على التقدير.\n\nوإذا كنت ترغب في دعمي بالتبرع بدولار أو اثنين، تواصل معي على تيليجرام.";
+
+"CHANGE_LANGUNGE" = "Change Language";
+"DEVLOPDER_TITLE" = "Chocolate Fluffy (Dumb Whore)";
+"DEVLOPDER_SUBTITLE" = "Developer";
+"DISCLAIMER_SUBTITLE" = "A note from whore";

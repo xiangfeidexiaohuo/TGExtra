@@ -45,6 +45,7 @@
 "DISABLE_RECORDING_ROUND_VIDEO_STATUS_SUBTITLE" = "Hide when you're recording a round video.";
 
 "DISABLE_UPLOADING_ROUND_VIDEO_STATUS_TITLE" = "Disable Uploading Round Video Status";
+"DISABLE_UPLOADING_ROUND_VIDEO_STATUS_SUBTITLE" = "Disable Uploading Round Video Status";
 
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_TITLE" = "Disable Speaking in Group Call Status";
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_SUBTITLE" = "Hide when you're speaking in a group call.";
@@ -99,3 +100,8 @@
 "DISCLAIMER" = "Disclaimer";
 
 "AUTHOR_MESSAGE" = "This Telegram tweak is for personal and educational use only. We are not affiliated with Telegram in any way. All trademarks, including the Telegram name and logo, belong to their respective owners. Don’t use this to break rules, be shady, or violate Telegram’s terms—we’re not responsible if things go sideways. Use at your own risk. \n \nAlso… if you like it, say something. I seriously live off validation. \n \nAlso.. If you Want to support me by donating a dollar or Two, Contact me on Telegram";
+
+"CHANGE_LANGUNGE" = "Change Language";
+"DEVLOPDER_TITLE" = "Chocolate Fluffy (Dumb Whore)";
+"DEVLOPDER_SUBTITLE" = "Developer";
+"DISCLAIMER_SUBTITLE" = "A note from whore";

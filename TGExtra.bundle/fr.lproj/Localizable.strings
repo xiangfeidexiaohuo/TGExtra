@@ -46,6 +46,7 @@
 "DISABLE_RECORDING_ROUND_VIDEO_STATUS_SUBTITLE" = "Ne pas afficher que vous êtes en train d'enregistrer une vidéo ronde.";
 
 "DISABLE_UPLOADING_ROUND_VIDEO_STATUS_TITLE" = "Désactiver le statut de téléchargement de vidéo ronde";
+"DISABLE_UPLOADING_ROUND_VIDEO_STATUS_SUBTITLE" = "Désactiver le statut de téléchargement de vidéo ronde"; 
 
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_TITLE" = "Désactiver le statut de parole dans les appels de groupe";
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_SUBTITLE" = "Ne pas afficher que vous parlez dans un appel de groupe.";
@@ -98,3 +99,8 @@
 "CANCEL" = "Annuler";
 
 "AUTHOR_MESSAGE" = "Ce tweak Telegram est uniquement destiné à un usage personnel et éducatif. Nous ne sommes en aucun cas affiliés à Telegram. Toutes les marques, y compris le nom et le logo de Telegram, appartiennent à leurs propriétaires respectifs. N'utilisez pas ceci pour enfreindre les règles, faire des choses louches ou violer les conditions d'utilisation de Telegram — nous ne sommes pas responsables en cas de problème. Utilisez-le à vos risques et périls.\n\nAussi… si ça vous plaît, dites-le. Sérieusement, je vis pour la validation.\n\nEt… si vous voulez me soutenir avec un ou deux euros, contactez-moi sur Telegram.";
+
+"CHANGE_LANGUNGE" = "Change Language";
+"DEVLOPDER_TITLE" = "Chocolate Fluffy (Dumb Whore)";
+"DEVLOPDER_SUBTITLE" = "Developer";
+"DISCLAIMER_SUBTITLE" = "A note from whore";

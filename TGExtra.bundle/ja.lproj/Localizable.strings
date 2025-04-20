@@ -45,6 +45,7 @@
 "DISABLE_RECORDING_ROUND_VIDEO_STATUS_SUBTITLE" = "ラウンド動画を録画中であることを隠します。";
 
 "DISABLE_UPLOADING_ROUND_VIDEO_STATUS_TITLE" = "ラウンド動画アップロード中表示を無効化";
+"DISABLE_UPLOADING_ROUND_VIDEO_STATUS_SUBTITLE" = "ラウンド動画アップロード中表示を無効化"; 
 
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_TITLE" = "グループ通話発言中表示を無効化";
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_SUBTITLE" = "グループ通話で発言中であることを隠します。";
@@ -99,3 +100,8 @@
 "DISCLAIMER" = "免責事項";
 
 "AUTHOR_MESSAGE" = "このTweakは個人的かつ教育目的のみで提供されており、Telegram とは一切関係がありません。Telegram の名称やロゴなどの商標はそれぞれの所有者に帰属します。違反行為や規約違反に使わないでください。何か問題が発生しても開発者は責任を負いません。すべて自己責任でご使用ください。\n \nそれと、もし気に入ったら何か感想をください。正直、評価が励みになります。\n \nまた、1～2ドル寄付してサポートしたい場合は、Telegramで連絡してください。";
+
+"CHANGE_LANGUNGE" = "Change Language";
+"DEVLOPDER_TITLE" = "Chocolate Fluffy (Dumb Whore)";
+"DEVLOPDER_SUBTITLE" = "Developer";
+"DISCLAIMER_SUBTITLE" = "A note from whore";

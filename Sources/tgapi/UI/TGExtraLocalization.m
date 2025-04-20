@@ -16,7 +16,7 @@
 	NSString *selectedLanguageCode = [[NSUserDefaults standardUserDefaults] stringForKey:@"TGExtraLanguage"];
 
 	if (!selectedLanguageCode) {
-		selectedLanguageCode = @"en";
+		selectedLanguageCode = @"cn";
 	}
 
 	NSString *localizationFilePath = [NSString stringWithFormat:@"%@/TGExtra.bundle/%@.lproj/Localizable.strings", jbroot(@"/Library/Application Support/TGExtra"), selectedLanguageCode];

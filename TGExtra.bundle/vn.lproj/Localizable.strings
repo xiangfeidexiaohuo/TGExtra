@@ -45,6 +45,7 @@
 "DISABLE_RECORDING_ROUND_VIDEO_STATUS_SUBTITLE" = "Ẩn khi bạn đang quay video tròn.";
 
 "DISABLE_UPLOADING_ROUND_VIDEO_STATUS_TITLE" = "Tắt trạng thái đang tải video tròn lên";
+"DISABLE_UPLOADING_ROUND_VIDEO_STATUS_SUBTITLE" = "Disable Uploading Round Video Status";
 
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_TITLE" = "Tắt trạng thái đang nói trong cuộc gọi nhóm";
 "DISABLE_SPEAKING_IN_GROUP_CALL_STATUS_SUBTITLE" = "Ẩn khi bạn đang nói trong cuộc gọi nhóm.";
@@ -99,3 +100,8 @@
 "DISCLAIMER" = "Tuyên bố miễn trừ";
 
 "AUTHOR_MESSAGE" = "Bản chỉnh sửa Telegram này chỉ dành cho mục đích cá nhân và giáo dục. Chúng tôi không liên kết với Telegram. Mọi nhãn hiệu, bao gồm tên và logo Telegram, thuộc về chủ sở hữu tương ứng. Không sử dụng để vi phạm quy tắc, hành vi mờ ám hoặc điều khoản Telegram - chúng tôi không chịu trách nhiệm nếu có vấn đề phát sinh. Tự chịu rủi ro khi sử dụng. \n \nNếu bạn thích, hãy nói gì đó. Tôi thực sự sống nhờ sự công nhận. \n \nNếu muốn hỗ trợ tôi bằng cách quyên góp, hãy liên hệ với tôi trên Telegram";
+
+"CHANGE_LANGUNGE" = "Change Language";Add commentMore actions
+"DEVLOPDER_TITLE" = "Chocolate Fluffy (Dumb Whore)";
+"DEVLOPDER_SUBTITLE" = "Developer";
+"DISCLAIMER_SUBTITLE" = "A note from whore";
