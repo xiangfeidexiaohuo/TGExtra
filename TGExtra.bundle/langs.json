@@ -34,4 +34,9 @@
 		"code" : "ja",
 		"flag" : "🇯🇵"
 	},
+	{
+		"name" : "Italian",
+		"code" : "it",
+		"flag" : "🇮🇹"
+	},
 ]
