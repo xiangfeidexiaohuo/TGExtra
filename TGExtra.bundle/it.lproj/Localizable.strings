@@ -1,6 +1,6 @@
 
 
-/* Sezioni */
+/* Sections */
 "GHOST_MODE_SECTION_HEADER" = "Modalità Fantasma";
 "READ_RECEIPT_SECTION_HEADER" = "Conferme di lettura";
 "MISC_SECTION_HEADER" = "Varie";
@@ -9,7 +9,7 @@
 "LANGUAGE_SECTION_HEADER" = "Lingua";
 "CREDITS_SECTION_HEADER" = "Crediti";
 
-/* Modalità Fantasma */
+/* Ghost Mode */
 "DISABLE_ONLINE_STATUS_TITLE" = "Disattiva stato online";
 "DISABLE_ONLINE_STATUS_SUBTITLE" = "Impedisci agli altri di vederti online.";
 
@@ -60,7 +60,7 @@
 "DISABLE_EMOJI_ACKNOWLEDGEMENT_STATUS_TITLE" = "Disattiva stato di reazione con emoji";
 "DISABLE_EMOJI_ACKNOWLEDGEMENT_STATUS_SUBTITLE" = "Nascondi quando reagisci con un'emoji a un messaggio.";
 
-/* Sezione Conferme di Lettura */
+/* READ_RECEIPT Section */
 "READ_RECEIPTS" = "Conferme di lettura";
 
 "DISABLE_MESSAGE_READ_RECEIPT_TITLE" = "Disattiva conferme di lettura messaggi";
@@ -69,7 +69,7 @@
 "DISABLE_STORY_READ_RECEIPT_TITLE" = "Disattiva conferme di lettura storie";
 "DISABLE_STORY_READ_RECEIPT_SUBTITLE" = "Impedisci agli altri di vedere che hai visualizzato le loro storie.";
 
-/* Sezione Varie */
+/* MISC Section */
 "MISC" = "Varie";
 
 "DISABLE_ALL_ADS_TITLE" = "Disattiva tutti gli annunci";
@@ -78,7 +78,7 @@
 "ENABLE_SAVING_PROTECTED_CONTENT_TITLE" = "Consenti salvataggio contenuti protetti";
 "ENABLE_SAVING_PROTECTED_CONTENT_SUBTITLE" = "Bypassa le restrizioni sul salvataggio dei contenuti protetti.";
 
-/* Selettore File */
+/* File Picker */
 "FIX_FILE_PICKER_TITLE" = "Correggi selezione file";
 "FIX_FILE_PICKER_SUBTITLE" = "Corregge il problema per cui non puoi selezionare file dall'app File nelle versioni sideloaded";
 "CLEAR_FILE_PICKER_CACHE_TITLE" = "Svuota cache selezione file";
@@ -86,12 +86,12 @@
 "CACHE_CLEAR_WARNING_TITLE" = "Conferma";
 "CACHE_CLEAR_WARNING_MESSAGE" = "Sei sicuro?";
 
-/* Posizione Falsa */
+/* Fake Location */
 "ENABLE_FAKE_LOCATION_TITLE" = "Abilita falsificazione posizione";
 "ENABLE_FAKE_LOCATION_SUBTITLE" = "Ti consente di falsificare la posizione GPS del dispositivo";
 "SELECT_FAKE_LOCATION_TITLE" = "Seleziona posizione";
 
-/* Extra */
+/* Extras */
 "APPLY" = "Applica";
 "APPLY_CHANGES" = "Sei sicuro di voler applicare queste modifiche?";
 
