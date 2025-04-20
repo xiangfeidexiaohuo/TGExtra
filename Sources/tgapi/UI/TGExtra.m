@@ -451,7 +451,7 @@ typedef NS_ENUM(NSInteger, TABLE_VIEW_SECTIONS) {
 			CGFloat savedLongitude = [defaults floatForKey:FAKE_LONGITUDE_KEY];
 			CGFloat savedLatitude = [defaults floatForKey:FAKE_LATITUDE_KEY];
 			
-			NSString *savedCord = savedCord = [NSString stringWithFormat:@"lon :%f\nlat :%f", savedLongitude ? : 0, savedLatitude ? : 0];
+			NSString *savedCord = savedCord = [NSString stringWithFormat:@"经 :%f\n纬 :%f", savedLongitude ? : 0, savedLatitude ? : 0];
 			
 			cell.textLabel.numberOfLines = 0;
 			cell.detailTextLabel.text = savedCord;
@@ -463,7 +463,7 @@ typedef NS_ENUM(NSInteger, TABLE_VIEW_SECTIONS) {
 	if (indexPath.section == 5) { // Language
 		cell = [self normalCellFromTableView:tableView];
 		if (indexPath.row == 0) {
-			cell.textLabel.text = @"Change Language";
+			cell.textLabel.text = TGLoc(@"CHANGE_LANGUNGE");
 			cell.detailTextLabel.text = @"";
 			cell.imageView.image = [UIImage systemImageNamed:@"globe"];
 			cell.imageView.tintColor = [self dynamicColorBW]; 
@@ -481,8 +481,8 @@ typedef NS_ENUM(NSInteger, TABLE_VIEW_SECTIONS) {
 		cell = [self normalCellFromTableView:tableView];
 		
 		if (indexPath.row == 0) {
-			cell.textLabel.text = @"Chocolate Fluffy (Dumb Whore)";
-			cell.detailTextLabel.text = @"Developer";
+			cell.textLabel.text = TGLoc(@"DEVLOPDER_TITLE");
+			cell.detailTextLabel.text = TGLoc(@"DEVLOPDER_SUBTITLE");
 			cell.detailTextLabel.textColor = [UIColor lightGrayColor];
 			NSData *imageData = [[NSData alloc] initWithBase64EncodedString:CHOCOPNG options:NSDataBase64DecodingIgnoreUnknownCharacters];
 			cell.imageView.image = [UIImage imageWithData:imageData scale:2.0];
@@ -493,7 +493,7 @@ typedef NS_ENUM(NSInteger, TABLE_VIEW_SECTIONS) {
 		} 
 		else if (indexPath.row == 1) {
 			cell.textLabel.text = TGLoc(@"DISCLAIMER");
-			cell.detailTextLabel.text = @"A note from whore";
+			cell.detailTextLabel.text = TGLoc(@"DISCLAIMER_SUBTITLE");
 			cell.imageView.image = [UIImage systemImageNamed:@"note.text"];
 			cell.imageView.tintColor = [self dynamicColorBW]; 
 			cell.accessoryView = nil;

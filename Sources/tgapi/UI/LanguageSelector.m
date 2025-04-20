@@ -24,16 +24,16 @@
     if (jsonDecodeError || !langs) {
         self.languages = @[
            @{
-               @"name" : @"English",
-               @"code" : @"en",
-               @"flag" : @"🇺🇸"
+               @"name" : @"Chinese",
+               @"code" : @"cn",
+               @"flag" : @"🇨🇳"
            }
         ];
     } else {
         self.languages = langs;
     }
 	
-	self.title = @"Change Language";
+	self.title = @"更改语言";
 	[self loadLanguages];
     [self setupTableView];
 }

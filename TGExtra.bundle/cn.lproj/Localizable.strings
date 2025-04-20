@@ -64,8 +64,8 @@
 "DISABLE_MESSAGE_READ_RECEIPT_TITLE" = "关闭消息已读回执";
 "DISABLE_MESSAGE_READ_RECEIPT_SUBTITLE" = "防止他人知道你已阅读消息。";
 
-"DISABLE_STORY_READ_RECEIPT_TITLE" = "关闭故事已读回执";
-"DISABLE_STORY_READ_RECEIPT_SUBTITLE" = "防止他人知道你已查看故事。";
+"DISABLE_STORY_READ_RECEIPT_TITLE" = "关闭动态已读回执";
+"DISABLE_STORY_READ_RECEIPT_SUBTITLE" = "防止他人知道你已查看动态。";
 
 /* MISC Section */
 "MISC" = "其他";
@@ -98,5 +98,9 @@
 
 "AUTHOR_MESSAGE" = "此 Telegram 插件仅供个人和教育用途。我们与 Telegram 没有任何关联。所有商标，包括 Telegram 的名称和标志，均归其各自所有者所有。请不要用它来违反规则、做灰色操作或违反 Telegram 的服务条款——如果出问题，我们概不负责。使用风险自负。\n\n另外……如果你喜欢这个插件，记得说一声。我真的很需要认可来维持动力。\n\n还有……如果你愿意支持我，捐个一两美元的话，可以在 Telegram 上联系我。";
 
-
-
+/* Others */
+"CHANGE_LANGUNGE" = "更改语言";
+"DEVLOPDER_TITLE" = "Chocolate Fluffy";
+"DEVLOPDER_SUBTITLE" = "开发者";
+"DISCLAIMER" = "免责声明";
+"DISCLAIMER_SUBTITLE" = "查看免责条款";
