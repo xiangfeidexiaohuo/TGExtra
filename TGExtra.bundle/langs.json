@@ -34,4 +34,14 @@
 		"code" : "ja",
 		"flag" : "🇯🇵"
 	},
+	{
+		"name" : "Italian",
+		"code" : "it",
+		"flag" : "🇮🇹"
+	},
+		{
+		"name" : "Taiwan",
+		"code" : "tw",
+		"flag" : "🇹🇼"
+	},	
 ]
