@@ -537,7 +537,7 @@ public extension Api {
             } }
             var _11: Int32?
             if Int(_1!) & Int(1 << 14) != 0 {_11 = reader.readInt32() }
-            var _12: [Api.RestrictionReason]? = nil
+            let _12: [Api.RestrictionReason]? = nil
             if Int(_1!) & Int(1 << 18) != 0 {if let _ = reader.readInt32() {
 					_1 = _1! & ~(1 << 18) // Disable the flag (set bit 22 to 0)
                 _ = Api.parseVector(reader, elementSignature: 0, elementType: Api.RestrictionReason.self)

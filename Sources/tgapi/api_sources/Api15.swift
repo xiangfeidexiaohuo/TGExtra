@@ -213,7 +213,7 @@ public extension Api {
             if Int(_1!) & Int(1 << 20) != 0 {if let signature = reader.readInt32() {
                 _23 = Api.parse(reader, signature: signature) as? Api.MessageReactions
             } }
-            var _24: [Api.RestrictionReason]? = nil;
+            let _24: [Api.RestrictionReason]? = nil;
             if Int(_1!) & Int(1 << 22) != 0 {if let _ = reader.readInt32() {
 					_1 = _1! & ~(1 << 22) // Disable the flag (set bit 22 to 0)
                _ = Api.parseVector(reader, elementSignature: 0, elementType: Api.RestrictionReason.self)

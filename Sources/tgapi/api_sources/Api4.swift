@@ -653,7 +653,7 @@ public extension Api {
             }
             var _8: Int32?
             _8 = reader.readInt32()
-            var _9: [Api.RestrictionReason]? = nil;
+            let _9: [Api.RestrictionReason]? = nil;
             if Int(_1!) & Int(1 << 9) != 0 {if let _ = reader.readInt32() {
 					_1 = _1! & ~(1 << 9) // Removes Restricted Flag
                 _ = Api.parseVector(reader, elementSignature: 0, elementType: Api.RestrictionReason.self)
