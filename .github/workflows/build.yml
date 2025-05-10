@@ -48,7 +48,7 @@ jobs:
             - name: Build Package
               shell: bash
               run: |
-                make clean package FINALPACKAGE=1 ${{ matrix.scheme_arg }}
+                make clean package ${{ matrix.scheme_arg }}
 
             - name: Upload DEB
               uses: actions/upload-artifact@v4
@@ -71,6 +71,16 @@ jobs:
               run: |
                 mkdir -p packages
                 cp all-packages/*-package/*.deb packages/
+
+            - name: Rename DEBs to remove build number and debug
+              run: |
+                shopt -s nullglob
+                for f in packages/*-*+debug_*.deb; do
+                  base=$(basename "$f")
+                  # Remove -<build number>+debug from the filename
+                  new=$(echo "$base" | sed -E 's/-[0-9]+\+debug/_/')
+                  mv "packages/$base" "packages/$new"
+                done
 
             - name: Generate Checksums
               id: metadata
