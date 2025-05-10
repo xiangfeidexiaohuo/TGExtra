@@ -77,8 +77,7 @@ jobs:
                 shopt -s nullglob
                 for f in packages/*-*+debug_*.deb; do
                   base=$(basename "$f")
-                  # Remove -<build number>+debug from the filename
-                  new=$(echo "$base" | sed -E 's/-[0-9]+\+debug/_/')
+                  new=$(echo "$base" | sed -E 's/-[0-9]+\+debug/_/' | sed -E 's/__+/_/g')
                   mv "packages/$base" "packages/$new"
                 done
 
