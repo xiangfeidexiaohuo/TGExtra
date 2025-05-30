@@ -4,6 +4,7 @@
 @interface LanguageSelector ()
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *languages;
+@property (nonatomic, assign) BOOL useMainBundle; // 标记是否使用mainBundle路径
 @end
 
 @implementation LanguageSelector
@@ -11,11 +12,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // 先使用jbroot路径
     NSString *filePath = jbroot(@"/Library/Application Support/TGExtra/TGExtra.bundle/langs.json");
 
     NSError *jsonDecodeError = nil;
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     NSArray *langs = nil;
+    
+    // 如果jbroot路径无效，则使用mainBundle路径
+    if (!data) {
+        self.useMainBundle = YES;
+        filePath = [NSString stringWithFormat:@"%@/TGExtra.bundle/langs.json", [[NSBundle mainBundle] resourcePath]];
+        data = [NSData dataWithContentsOfFile:filePath];
+    }
 
     if (data) {
         langs = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonDecodeError];
@@ -33,8 +42,8 @@
         self.languages = langs;
     }
 
-	self.title = @"Change Language";
-	[self loadLanguages];
+    self.title = @"Change Language";
+    [self loadLanguages];
     [self setupTableView];
 }
 
@@ -58,19 +67,23 @@
     NSMutableArray *languages = [NSMutableArray array];
 
     for (NSDictionary *language in self.languages) {
-        NSString *localizationFilePath = [NSString stringWithFormat:@"%@/TGExtra.bundle/%@.lproj/Localizable.strings", jbroot(@"/Library/Application Support/TGExtra"), language[@"code"]];
+        NSString *basePath = self.useMainBundle ? 
+            [[NSBundle mainBundle] resourcePath] : 
+            jbroot(@"/Library/Application Support/TGExtra");
+            
+        NSString *localizationFilePath = [NSString stringWithFormat:@"%@/TGExtra.bundle/%@.lproj/Localizable.strings", basePath, language[@"code"]];
         BOOL hasFile = [[NSFileManager defaultManager] fileExistsAtPath:localizationFilePath];
 
-		[languages addObject:@{
-			@"code": language[@"code"],
-			@"name" : language[@"name"],
-			@"flag": language[@"flag"],
-			@"path" : localizationFilePath,
-			@"isValid" : @(hasFile)}
-		];
+        [languages addObject:@{
+            @"code": language[@"code"],
+            @"name" : language[@"name"],
+            @"flag": language[@"flag"],
+            @"path" : localizationFilePath,
+            @"isValid" : @(hasFile)}
+        ];
     }
 
-	self.languages = [languages copy];
+    self.languages = [languages copy];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

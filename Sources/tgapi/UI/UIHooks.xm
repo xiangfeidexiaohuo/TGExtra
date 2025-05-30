@@ -120,6 +120,22 @@ void showUI() {
 
 %end
 
+static void handleThreeFingerLongPress(UILongPressGestureRecognizer *gesture) {
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        showUI();
+    }
+}
+
+@interface ThreeFingerGestureHandler : NSObject
+- (void)handleThreeFingerLongPress:(UILongPressGestureRecognizer *)gesture;
+@end
+
+@implementation ThreeFingerGestureHandler
+- (void)handleThreeFingerLongPress:(UILongPressGestureRecognizer *)gesture {
+    handleThreeFingerLongPress(gesture);
+}
+@end
+
 __attribute__((constructor))
 static void hook() {
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -128,5 +144,24 @@ static void hook() {
 		    TabBarNode = objc_getClass("TabBarUI.TabBarNode"),
             PeerInfoScreenItemNode = objc_getClass("PeerInfoScreen.PeerInfoScreenItemNode")
 		);
+        
+        // 三指长按手势识别器
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            UIWindow *window = UIApplication.sharedApplication.keyWindow;
+            if (window) {
+                static ThreeFingerGestureHandler *gestureHandler = nil;
+                if (!gestureHandler) {
+                    gestureHandler = [[ThreeFingerGestureHandler alloc] init];
+                }
+                
+                UILongPressGestureRecognizer *threeFingerLongPress = [[UILongPressGestureRecognizer alloc] 
+                    initWithTarget:gestureHandler 
+                    action:@selector(handleThreeFingerLongPress:)];
+                threeFingerLongPress.numberOfTouchesRequired = 3;
+                threeFingerLongPress.minimumPressDuration = 0.5;
+                
+                [window addGestureRecognizer:threeFingerLongPress];
+            }
+        });
 	});
 }
