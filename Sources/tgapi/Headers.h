@@ -7,12 +7,6 @@
 - (void)handleThreeFingerLongPress:(UILongPressGestureRecognizer *)gesture;
 @end
 
-@implementation ThreeFingerGestureHandler
-- (void)handleThreeFingerLongPress:(UILongPressGestureRecognizer *)gesture {
-    handleThreeFingerLongPress(gesture);
-}
-@end
-
 @interface TLParser : NSObject
 + (NSData *)handleResponse:(NSData *)data functionID:(NSNumber *)ios;
 @end
