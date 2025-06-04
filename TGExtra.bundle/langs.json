@@ -1,13 +1,33 @@
 [
-	{
+    {
+		"name" : "Arabic",
+		"code" : "ar",
+		"flag" : "🇸🇦"
+	},
+    {
+		"name" : "Chinese",
+		"code" : "cn",
+		"flag" : "🇨🇳"
+	},
+    {
 		"name" : "English",
 		"code" : "en",
 		"flag" : "🇺🇸"
 	},
-	{
-		"name" : "Chinese",
-		"code" : "cn",
-		"flag" : "🇨🇳"
+    {
+		"name" : "French",
+		"code" : "fr",
+		"flag" : "🇫🇷"
+	},
+    {
+		"name" : "Italian",
+		"code" : "it",
+		"flag" : "🇮🇹"
+	},
+    {
+		"name" : "Japanese",
+		"code" : "ja",
+		"flag" : "🇯🇵"
 	},
 	{
 		"name" : "Russian",
@@ -15,33 +35,18 @@
 		"flag" : "🇷🇺"
 	},
 	{
-		"name" : "Arabic",
-		"code" : "ar",
-		"flag" : "🇸🇦"
-	},
-	{
-		"name" : "French",
-		"code" : "fr",
-		"flag" : "🇫🇷"
-	},
-	{
 		"name" : "Spanish",
 		"code" : "es",
 		"flag" : "🇪🇸"
 	},
 	{
-		"name" : "Japanese",
-		"code" : "ja",
-		"flag" : "🇯🇵"
-	},
-	{
-		"name" : "Italian",
-		"code" : "it",
-		"flag" : "🇮🇹"
-	},
-		{
 		"name" : "Taiwan",
 		"code" : "tw",
 		"flag" : "🇹🇼"
-	},	
+	},
+    {
+        "name" : "Vietnamese",
+        "code" : "vi",
+        "flag" : "🇻🇳"
+    }
 ]
