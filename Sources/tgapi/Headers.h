@@ -3,10 +3,6 @@
 #import "Logger/Logger.h"
 #import "Constants.h"
 
-@interface ThreeFingerGestureHandler : NSObject
-- (void)handleThreeFingerLongPress:(UILongPressGestureRecognizer *)gesture;
-@end
-
 @interface TLParser : NSObject
 + (NSData *)handleResponse:(NSData *)data functionID:(NSNumber *)ios;
 @end
