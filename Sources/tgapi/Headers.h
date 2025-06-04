@@ -3,12 +3,22 @@
 #import "Logger/Logger.h"
 #import "Constants.h"
 
+@interface ThreeFingerGestureHandler : NSObject
+- (void)handleThreeFingerLongPress:(UILongPressGestureRecognizer *)gesture;
+@end
+
+@implementation ThreeFingerGestureHandler
+- (void)handleThreeFingerLongPress:(UILongPressGestureRecognizer *)gesture {
+    handleThreeFingerLongPress(gesture);
+}
+@end
+
 @interface TLParser : NSObject
 + (NSData *)handleResponse:(NSData *)data functionID:(NSNumber *)ios;
 @end
 
 @interface MTRpcError : NSObject
-- (id)initWithErrorCode:(int)code errorDescription:(id)desc; 
+- (id)initWithErrorCode:(int)code errorDescription:(id)desc;
 @end
 
 @interface MTRequestResponseInfo : NSObject
