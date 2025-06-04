@@ -12,12 +12,6 @@
 - (void)__handle5PleTap;
 @end
 
-@implementation ThreeFingerGestureHandler
-- (void)handleThreeFingerLongPress:(UILongPressGestureRecognizer *)gesture {
-    handleThreeFingerLongPress(gesture);
-}
-@end
-
 static __weak TGLocalization *TGLocalizationShared = nil;
 
 %hook TGLocalization
@@ -48,6 +42,12 @@ void handleThreeFingerLongPress(UILongPressGestureRecognizer *gesture) {
         showUI();
     }
 }
+
+@implementation ThreeFingerGestureHandler
+- (void)handleThreeFingerLongPress:(UILongPressGestureRecognizer *)gesture {
+    handleThreeFingerLongPress(gesture);
+}
+@end
 
 %hook ASDisplayNode
 %property (nonatomic, strong) UILongPressGestureRecognizer *longPressGesture;
