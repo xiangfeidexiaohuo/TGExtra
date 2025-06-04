@@ -12,6 +12,7 @@
 - (void)__handle5PleTap;
 @end
 
+static ThreeFingerGestureHandler *gestureHandler = nil;
 static __weak TGLocalization *TGLocalizationShared = nil;
 
 %hook TGLocalization
@@ -142,7 +143,6 @@ static void hook() {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             UIWindow *window = UIApplication.sharedApplication.keyWindow;
             if (window) {
-                ThreeFingerGestureHandler *gestureHandler = nil;
                 if (!gestureHandler) {
                     gestureHandler = [[ThreeFingerGestureHandler alloc] init];
                 }

@@ -24,9 +24,9 @@
     if (jsonDecodeError || !langs) {
         self.languages = @[
            @{
-               @"name" : @"English",
-               @"code" : @"en",
-               @"flag" : @"🇺🇸"
+               @"name": @"English",
+               @"code": @"en",
+               @"flag": @"🇺🇸"
            }
         ];
     } else {

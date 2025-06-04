@@ -1,52 +1,52 @@
 [
     {
-		"name" : "Arabic",
-		"code" : "ar",
-		"flag" : "🇸🇦"
-	},
+        "name": "Arabic",
+        "code": "ar",
+        "flag": "🇸🇦"
+    },
     {
-		"name" : "Chinese",
-		"code" : "cn",
-		"flag" : "🇨🇳"
-	},
+        "name": "Chinese",
+        "code": "cn",
+        "flag": "🇨🇳"
+    },
     {
-		"name" : "English",
-		"code" : "en",
-		"flag" : "🇺🇸"
-	},
+        "name": "English",
+        "code": "en",
+        "flag": "🇺🇸"
+    },
     {
-		"name" : "French",
-		"code" : "fr",
-		"flag" : "🇫🇷"
-	},
+        "name": "French",
+        "code": "fr",
+        "flag": "🇫🇷"
+    },
     {
-		"name" : "Italian",
-		"code" : "it",
-		"flag" : "🇮🇹"
-	},
+        "name": "Italian",
+        "code": "it",
+        "flag": "🇮🇹"
+    },
     {
-		"name" : "Japanese",
-		"code" : "ja",
-		"flag" : "🇯🇵"
-	},
-	{
-		"name" : "Russian",
-		"code" : "ru",
-		"flag" : "🇷🇺"
-	},
-	{
-		"name" : "Spanish",
-		"code" : "es",
-		"flag" : "🇪🇸"
-	},
-	{
-		"name" : "Taiwan",
-		"code" : "tw",
-		"flag" : "🇹🇼"
-	},
+        "name": "Japanese",
+        "code": "ja",
+        "flag": "🇯🇵"
+    },
     {
-        "name" : "Vietnamese",
-        "code" : "vi",
-        "flag" : "🇻🇳"
+        "name": "Russian",
+        "code": "ru",
+        "flag": "🇷🇺"
+    },
+    {
+        "name": "Spanish",
+        "code": "es",
+        "flag": "🇪🇸"
+    },
+    {
+        "name": "Taiwan",
+        "code": "tw",
+        "flag": "🇹🇼"
+    },
+    {
+        "name": "Vietnamese",
+        "code": "vn",
+        "flag": "🇻🇳"
     }
 ]
