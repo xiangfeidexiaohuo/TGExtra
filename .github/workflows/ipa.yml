@@ -13,9 +13,9 @@ jobs:
     name: Prepare Dependencies
     runs-on: macos-latest
     outputs:
-      IPA_BUNDLE_ID: ${{ steps.IPA.outputs.IPA_BUNDLE_ID }}
-      IPA_VERSION: ${{ steps.IPA.outputs.IPA_VERSION }}
-      TGEXTRA_VERSION: ${{ steps.TGExtra.outputs.TGEXTRA_VERSION }}
+      IPA_BUNDLE_ID: ${{ steps.extractIPA.outputs.IPA_BUNDLE_ID }}
+      IPA_VERSION: ${{ steps.extractIPA.outputs.IPA_VERSION }}
+      TGEXTRA_VERSION: ${{ steps.extractTGExtra.outputs.TGEXTRA_VERSION }}
     steps:
       - name: Download decrypted IPA
         env:
@@ -25,12 +25,12 @@ jobs:
           unzip -q decrypted.ipa -d payload
 
       - name: Extract bundle ID & version
-        id: IPA
+        id: extractIPA
         run: |
           PLIST=payload/Payload/*.app/Info.plist
 
-          echo "IPA_BUNDLE_ID=$(grep -A1 '<key>CFBundleIdentifier</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_ENV
-          echo "IPA_VERSION=$(grep -A1 '<key>CFBundleShortVersionString</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_ENV
+          echo "IPA_BUNDLE_ID=$(grep -A1 '<key>CFBundleIdentifier</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_OUTPUT
+          echo "IPA_VERSION=$(grep -A1 '<key>CFBundleShortVersionString</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_OUTPUT
 
       - name: Download latest TGExtra .deb
         env:
@@ -38,12 +38,12 @@ jobs:
         run: |
           gh release download release --repo waruhachi/TGExtra --pattern 'com.choco.tg_*_iphoneos-arm.deb' --dir .
 
-      - name: Set TGExtra version
-        id: TGExtra
+      - name: Extract TGExtra version
+        id: extractTGExtra
         run: |
           TGF=$(ls com.choco.tg_*_iphoneos-arm.deb | head -n1)
           TGV=$(echo "$TGF" | sed -E 's/com\.choco\.tg_([0-9\.]+)_.+\.deb/\1/')
-          echo "TGEXTRA_VERSION=$TGV" >> $GITHUB_ENV
+          echo "TGEXTRA_VERSION=$TGV" >> $GITHUB_OUTPUT
 
       - name: Download latest SideloadFix.dylib
         env:
