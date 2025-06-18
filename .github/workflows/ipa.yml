@@ -32,6 +32,7 @@ jobs:
       - name: Extract bundle ID & version
         run: |
           PLIST=payload/Payload/*.app/Info.plist
+
           echo "IPA_BUNDLE_ID=$(grep -A1 '<key>CFBundleIdentifier</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_ENV
           echo "IPA_VERSION=$(grep -A1 '<key>CFBundleShortVersionString</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_ENV
 
@@ -48,7 +49,7 @@ jobs:
 
       - name: Set TGEXTRA_VERSION
         run: |
-          TGF=$(ls tgextra.deb)
+          TGF=$(ls com.choco.tg_*_iphoneos-arm.deb | head -n1)
           TGV=$(echo "$TGF" | sed -E 's/com\.choco\.tg_([0-9\.]+)_.+\.deb/\1/')
           echo "TGEXTRA_VERSION=$TGV" >> $GITHUB_ENV
 
@@ -73,7 +74,9 @@ jobs:
           OUT_BASE="${IPA_BUNDLE_ID}-${IPA_VERSION}-TGExtra-${TGEXTRA_VERSION}"
           OUT_IPA="${OUT_BASE}.ipa"
           OUT_TIPA="${OUT_BASE}.tipa"
+
           cyan -i decrypted.ipa -o "$OUT_IPA" -uwsgq -f com.choco.tg_${TGEXTRA_VERSION}_iphoneos-arm.deb -f SideloadFix.dylib
+
           cp "$OUT_IPA" "$OUT_TIPA"
           mkdir -p artifacts
           mv "$OUT_IPA" "$OUT_TIPA" artifacts/
