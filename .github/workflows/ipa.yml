@@ -93,6 +93,12 @@ jobs:
           TGEXTRA_DEB="dependencies/com.choco.tg_${TGEXTRA_VERSION}_iphoneos-arm.deb"
           DECRYPTED_IPA="dependencies/decrypted.ipa"
 
+          echo "SIDELOADFIX_DYLIB: $SIDELOADFIX_DYLIB"
+          echo "TGEXTRA_DEB: $TGEXTRA_DEB"
+          echo "DECRYPTED_IPA: $DECRYPTED_IPA"
+
+          ls dependencies
+
           OUT_BASE="$IPA_BUNDLE_ID-$IPA_VERSION-TGExtra-$TGEXTRA_VERSION"
           OUT_IPA="$OUT_BASE.ipa"
           OUT_TIPA="$OUT_BASE.tipa"
