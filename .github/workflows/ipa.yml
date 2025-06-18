@@ -22,7 +22,7 @@ jobs:
         env:
           IPA_URL: ${{ inputs.decrypted_ipa_url }}
         run: |
-          wget "$IPA_URL" -O decrypted.ipa
+          curl -L -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)" -o decrypted.ipa "$IPA_URL"
           unzip -q decrypted.ipa -d payload
 
       - name: Extract bundle ID & version
