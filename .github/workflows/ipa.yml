@@ -13,6 +13,7 @@ jobs:
     name: Prepare Dependencies
     runs-on: macos-latest
     outputs:
+      ipa_app_name: ${{ steps.extractIPA.outputs.ipa_app_name }}
       ipa_bundle_id: ${{ steps.extractIPA.outputs.ipa_bundle_id }}
       ipa_version: ${{ steps.extractIPA.outputs.ipa_version }}
       tgextra_version: ${{ steps.extractTGExtra.outputs.tgextra_version }}
@@ -29,9 +30,11 @@ jobs:
         run: |
           PLIST=$(ls Payload/*.app/Info.plist | head -n1)
 
+          IPA_APP_NAME=$(grep -A1 '<key>CFBundleDisplayName</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p') || $(grep -A1 '<key>CFBundleExecutable</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p') || $(grep -A1 '<key>CFBundleName</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
           IPA_BUNDLE_ID=$(grep -A1 '<key>CFBundleIdentifier</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
           IPA_VERSION=$(grep -A1 '<key>CFBundleShortVersionString</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
 
+          echo "ipa_app_name=$IPA_APP_NAME" >> "$GITHUB_OUTPUT"
           echo "ipa_bundle_id=$IPA_BUNDLE_ID" >> "$GITHUB_OUTPUT"
           echo "ipa_version=$IPA_VERSION" >> "$GITHUB_OUTPUT"
 
@@ -104,9 +107,11 @@ jobs:
             artifacts/*.tipa
 
   updateRelease:
-    name: Update GitHub Release with IPA and TIPA
+    name: Update GitHub Release
     needs: inject
     runs-on: macos-latest
+    env:
+      IPA_APP_NAME: ${{ needs.prepareDependencies.outputs.ipa_app_name }}
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -126,7 +131,7 @@ jobs:
         run: |
           for ipa in artifacts/*.ipa; do
             if [ -f "$ipa" ]; then
-              echo "### Sideload (IPA)" >> release_body.md
+              echo "### $(IPA_APP_NAME) (Sideload)" >> release_body.md
               echo "* MD5: $(md5 -q $ipa)" >> release_body.md
               echo "* SHA1: $(shasum -a 1 $ipa | awk '{ print $1 }')" >> release_body.md
               echo "* SHA256: $(shasum -a 256 $ipa | awk '{ print $1 }')" >> release_body.md
@@ -137,7 +142,7 @@ jobs:
 
           for tipa in artifacts/*.tipa; do
             if [ -f "$tipa" ]; then
-              echo "### TrollStore (TIPA)" >> release_body.md
+              echo "### $"IPA_APP_NAME" (TrollStore)" >> release_body.md
               echo "* MD5: $(md5 -q $tipa)" >> release_body.md
               echo "* SHA1: $(shasum -a 1 $tipa | awk '{ print $1 }')" >> release_body.md
               echo "* SHA256: $(shasum -a 256 $tipa | awk '{ print $1 }')" >> release_body.md
@@ -160,3 +165,15 @@ jobs:
           draft: false
           prerelease: false
           make_latest: true
+  cleanup:
+    name: Cleanup
+    needs: updateRelease
+    runs-on: macos-latest
+    steps:
+      - name: Delete build artifacts
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: |
+            artifacts
+            dependencies
+          failOnError: false
