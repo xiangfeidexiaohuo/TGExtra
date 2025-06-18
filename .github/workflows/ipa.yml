@@ -124,8 +124,6 @@ jobs:
       - name: Generate Checksums
         id: metadata
         run: |
-          ls -la
-
           for ipa in artifacts/*.ipa; do
             if [ -f "$ipa" ]; then
               echo "### Sideload (IPA)" >> release_body.md
