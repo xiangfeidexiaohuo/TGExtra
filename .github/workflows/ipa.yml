@@ -143,6 +143,8 @@ jobs:
             fi
           done
 
+          cat <<EOF >> release_body.md
+
       - name: Update GitHub Release
         uses: softprops/action-gh-release@v2
         env:
@@ -151,7 +153,9 @@ jobs:
           tag_name: release
           name: ${{ github.event.repository.name }}
           body_path: release_body.md
-          files: artifacts/*.{ipa,tipa}
+          files: |
+            artifacts/*.ipa
+            artifacts/*.tipa
           draft: false
           prerelease: false
           make_latest: true
