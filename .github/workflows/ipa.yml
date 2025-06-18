@@ -113,6 +113,8 @@ jobs:
           name: artifacts
 
       - name: Fetch existing release body
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release view release --repo ${{ github.repository }} --json body --jq .body > release_body.md
 
