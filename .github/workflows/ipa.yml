@@ -16,7 +16,7 @@ jobs:
         run: |
           pip install --force-reinstall https://github.com/asdfzxcvbn/pyzule-rw/archive/main.zip
 
-  downloadIPA:
+  prepareIPA:
     needs: installCyan
     runs-on: macos-latest
     steps:
@@ -27,44 +27,40 @@ jobs:
           curl -L -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)" -o decrypted.ipa "$IPA_URL"
           unzip -q decrypted.ipa -d payload
 
-  extractBundle:
-    needs: downloadIPA
-    runs-on: macos-latest
-    steps:
       - name: Extract bundle ID & version
         run: |
           PLIST=payload/Payload/*.app/Info.plist
           echo "IPA_BUNDLE_ID=$(grep -A1 '<key>CFBundleIdentifier</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_ENV
           echo "IPA_VERSION=$(grep -A1 '<key>CFBundleShortVersionString</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_ENV
 
-  downloadTGExtra:
-    needs: extractBundle
+  prepareTGExtra:
+    needs: prepareIPA
     runs-on: macos-latest
     steps:
       - name: Download latest TGExtra .deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release download latest --repo waruhachi/TGExtra --pattern 'com.choco.tg_*_iphoneos-arm.deb' --dir .
 
-  setTGExtraVersion:
-    needs: downloadTGExtra
-    runs-on: macos-latest
-    steps:
       - name: Set TGEXTRA_VERSION
         run: |
           TGF=$(ls tgextra.deb)
           TGV=$(echo "$TGF" | sed -E 's/com\.choco\.tg_([0-9\.]+)_.+\.deb/\1/')
           echo "TGEXTRA_VERSION=$TGV" >> $GITHUB_ENV
 
-  downloadSideloadfix:
-    needs: setTGExtraVersion
+  prepareSideloadFix:
+    needs: prepareTGExtra
     runs-on: macos-latest
     steps:
       - name: Download latest SideloadFix.dylib
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release download latest --repo waruhachi/SideloadFix --pattern 'SideloadFix.dylib' --dir .
 
   inject:
-    needs: downloadSideloadfix
+    needs: prepareSideloadFix
     runs-on: macos-latest
     steps:
       - name: Inject TGExtra & SideloadFix into IPA
