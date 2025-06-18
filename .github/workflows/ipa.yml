@@ -27,8 +27,7 @@ jobs:
       - name: Extract bundle ID & version
         id: extractIPA
         run: |
-          ls -R Payload
-          PLIST=Payload/*.app/Info.plist
+          PLIST=$(ls Payload/*.app/Info.plist | head -n1)
 
           IPA_BUNDLE_ID=$(grep -A1 '<key>CFBundleIdentifier</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
           IPA_VERSION=$(grep -A1 '<key>CFBundleShortVersionString</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
