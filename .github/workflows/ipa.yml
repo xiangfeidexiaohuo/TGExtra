@@ -29,10 +29,13 @@ jobs:
         run: |
           PLIST=payload/Payload/*.app/Info.plist
 
-          echo "IPA_BUNDLE_ID=$(grep -A1 '<key>CFBundleIdentifier</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_OUTPUT
-          echo "IPA_VERSION=$(grep -A1 '<key>CFBundleShortVersionString</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_OUTPUT
+          IPA_BUNDLE_ID=$(grep -A1 '<key>CFBundleIdentifier</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
+          IPA_VERSION=$(grep -A1 '<key>CFBundleShortVersionString</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
 
-      - name: Download latest TGExtra .deb
+          echo "IPA_BUNDLE_ID=$IPA_BUNDLE_ID" >> "$GITHUB_OUTPUT"
+          echo "IPA_VERSION=$IPA_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Download latest TGExtra
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -41,15 +44,25 @@ jobs:
       - name: Extract TGExtra version
         id: extractTGExtra
         run: |
-          TGF=$(ls com.choco.tg_*_iphoneos-arm.deb | head -n1)
-          TGV=$(echo "$TGF" | sed -E 's/com\.choco\.tg_([0-9\.]+)_.+\.deb/\1/')
-          echo "TGEXTRA_VERSION=$TGV" >> $GITHUB_OUTPUT
+          FIRST=$(ls com.choco.tg_*_iphoneos-arm.deb | head -n1)
+          TGEXTRA_VERSION=$(echo "$FIRST" | sed -E 's/com\.choco\.tg_([0-9\.]+)_.+\.deb/\1/')
+
+          echo "TGEXTRA_VERSION=$TGEXTRA_VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Download latest SideloadFix.dylib
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release download release --repo waruhachi/SideloadFix --pattern 'SideloadFix.dylib' --dir .
+
+      - name: Upload Dependencies
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependencies
+          path: |
+            decrypted.ipa
+            com.choco.tg_*_iphoneos-arm.deb
+            SideloadFix.dylib
 
   inject:
     name: Inject TGExtra & SideloadFix
@@ -60,6 +73,11 @@ jobs:
       IPA_VERSION: ${{ needs.prepareDependencies.outputs.IPA_VERSION }}
       TGEXTRA_VERSION: ${{ needs.prepareDependencies.outputs.TGEXTRA_VERSION }}
     steps:
+      - name: Download dependencies
+        uses: actions/download-artifact@v3
+        with:
+          name: dependencies
+
       - name: Install Cyan CLI
         run: |
           pip install --force-reinstall https://github.com/asdfzxcvbn/pyzule-rw/archive/main.zip
