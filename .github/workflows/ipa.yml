@@ -32,6 +32,9 @@ jobs:
           IPA_BUNDLE_ID=$(grep -A1 '<key>CFBundleIdentifier</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
           IPA_VERSION=$(grep -A1 '<key>CFBundleShortVersionString</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
 
+          echo "Extracted Bundle ID: $IPA_BUNDLE_ID"
+          echo "Extracted Version: $IPA_VERSION"
+
           echo "ipa_bundle_id=$IPA_BUNDLE_ID" >> "$GITHUB_OUTPUT"
           echo "ipa_version=$IPA_VERSION" >> "$GITHUB_OUTPUT"
 
@@ -84,6 +87,10 @@ jobs:
 
       - name: Inject TGExtra & SideloadFix into IPA
         run: |
+          echo "IPA Bundle ID: $IPA_BUNDLE_ID"
+          echo "IPA Version: $IPA_VERSION"
+          echo "TGExtra Version: $TGEXTRA_VERSION"
+
           OUT_BASE="$IPA_BUNDLE_ID-$IPA_VERSION-TGExtra-$TGEXTRA_VERSION"
           OUT_IPA="$OUT_BASE.ipa"
           OUT_TIPA="$OUT_BASE.tipa"
