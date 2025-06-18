@@ -30,7 +30,7 @@ jobs:
         run: |
           PLIST=$(ls Payload/*.app/Info.plist | head -n1)
 
-          IPA_APP_NAME=$(grep -A1 '<key>CFBundleDisplayName</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p') || $(grep -A1 '<key>CFBundleExecutable</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p') || $(grep -A1 '<key>CFBundleName</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
+          IPA_APP_NAME=$(grep -A1 '<key>CFBundleDisplayName</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p' || grep -A1 '<key>CFBundleExecutable</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p' || grep -A1 '<key>CFBundleName</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
           IPA_BUNDLE_ID=$(grep -A1 '<key>CFBundleIdentifier</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
           IPA_VERSION=$(grep -A1 '<key>CFBundleShortVersionString</key>' "$PLIST" | sed -n 's/.*<string>\(.*\)<\/string>.*/\1/p')
 
@@ -131,7 +131,7 @@ jobs:
         run: |
           for ipa in artifacts/*.ipa; do
             if [ -f "$ipa" ]; then
-              echo "### $(IPA_APP_NAME) (Sideload)" >> release_body.md
+              echo "### $IPA_APP_NAME (Sideload)" >> release_body.md
               echo "* MD5: $(md5 -q $ipa)" >> release_body.md
               echo "* SHA1: $(shasum -a 1 $ipa | awk '{ print $1 }')" >> release_body.md
               echo "* SHA256: $(shasum -a 256 $ipa | awk '{ print $1 }')" >> release_body.md
@@ -142,7 +142,7 @@ jobs:
 
           for tipa in artifacts/*.tipa; do
             if [ -f "$tipa" ]; then
-              echo "### $"IPA_APP_NAME" (TrollStore)" >> release_body.md
+              echo "### $IPA_APP_NAME (TrollStore)" >> release_body.md
               echo "* MD5: $(md5 -q $tipa)" >> release_body.md
               echo "* SHA1: $(shasum -a 1 $tipa | awk '{ print $1 }')" >> release_body.md
               echo "* SHA256: $(shasum -a 256 $tipa | awk '{ print $1 }')" >> release_body.md
