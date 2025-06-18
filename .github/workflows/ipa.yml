@@ -94,11 +94,28 @@ jobs:
           mkdir -p artifacts
           mv "$OUT_IPA" "$OUT_TIPA" artifacts/
 
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts
+          path: |
+            artifacts/*.ipa
+            artifacts/*.tipa
+
   updateRelease:
     name: Update GitHub Release with IPA and TIPA
     needs: inject
     runs-on: macos-latest
     steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: artifacts
+
+      - name: Fetch existing release body
+        run: |
+          gh release view release --repo ${{ github.repository }} --json body --jq .body > release_body.md
+
       - name: Generate Checksums
         id: metadata
         run: |
