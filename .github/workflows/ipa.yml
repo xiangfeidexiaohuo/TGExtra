@@ -9,9 +9,13 @@ on:
         type: string
 
 jobs:
-  prepareIPA:
-    name: Prepare IPA
+  prepareDependencies:
+    name: Prepare Dependencies
     runs-on: macos-latest
+    outputs:
+      IPA_BUNDLE_ID: ${{ steps.IPA.outputs.IPA_BUNDLE_ID }}
+      IPA_VERSION: ${{ steps.IPA.outputs.IPA_VERSION }}
+      TGEXTRA_VERSION: ${{ steps.TGExtra.outputs.TGEXTRA_VERSION }}
     steps:
       - name: Download decrypted IPA
         env:
@@ -21,34 +25,26 @@ jobs:
           unzip -q decrypted.ipa -d payload
 
       - name: Extract bundle ID & version
+        id: IPA
         run: |
           PLIST=payload/Payload/*.app/Info.plist
 
           echo "IPA_BUNDLE_ID=$(grep -A1 '<key>CFBundleIdentifier</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_ENV
           echo "IPA_VERSION=$(grep -A1 '<key>CFBundleShortVersionString</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_ENV
 
-  prepareTGExtra:
-    name: Prepare TGExtra
-    needs: prepareIPA
-    runs-on: macos-latest
-    steps:
       - name: Download latest TGExtra .deb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release download release --repo waruhachi/TGExtra --pattern 'com.choco.tg_*_iphoneos-arm.deb' --dir .
 
-      - name: Set TGEXTRA_VERSION
+      - name: Set TGExtra version
+        id: TGExtra
         run: |
           TGF=$(ls com.choco.tg_*_iphoneos-arm.deb | head -n1)
           TGV=$(echo "$TGF" | sed -E 's/com\.choco\.tg_([0-9\.]+)_.+\.deb/\1/')
           echo "TGEXTRA_VERSION=$TGV" >> $GITHUB_ENV
 
-  prepareSideloadFix:
-    name: Prepare SideloadFix
-    needs: prepareTGExtra
-    runs-on: macos-latest
-    steps:
       - name: Download latest SideloadFix.dylib
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -57,8 +53,12 @@ jobs:
 
   inject:
     name: Inject TGExtra & SideloadFix
-    needs: prepareSideloadFix
+    needs: prepareDependencies
     runs-on: macos-latest
+    env:
+      IPA_BUNDLE_ID: ${{ needs.prepareDependencies.outputs.IPA_BUNDLE_ID }}
+      IPA_VERSION: ${{ needs.prepareDependencies.outputs.IPA_VERSION }}
+      TGEXTRA_VERSION: ${{ needs.prepareDependencies.outputs.TGEXTRA_VERSION }}
     steps:
       - name: Install Cyan CLI
         run: |
@@ -76,9 +76,9 @@ jobs:
           mkdir -p artifacts
           mv "$OUT_IPA" "$OUT_TIPA" artifacts/
 
-  generateChecksums:
-    name: Generate Checksums
-    needs: inject
+  updateRelease:
+    name: Update GitHub Release with IPA and TIPA
+    needs: generateChecksums
     runs-on: macos-latest
     steps:
       - name: Generate Checksums
@@ -106,11 +106,6 @@ jobs:
             fi
           done
 
-  updateRelease:
-    name: Update GitHub Release with IPA and TIPA
-    needs: generateChecksums
-    runs-on: macos-latest
-    steps:
       - name: Update GitHub Release
         uses: softprops/action-gh-release@v2
         env:
