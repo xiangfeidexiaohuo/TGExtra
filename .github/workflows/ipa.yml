@@ -10,6 +10,7 @@ on:
 
 jobs:
   installCyan:
+    name: Install cyan
     runs-on: macos-latest
     steps:
       - name: Install cyan CLI
@@ -17,6 +18,7 @@ jobs:
           pip install --force-reinstall https://github.com/asdfzxcvbn/pyzule-rw/archive/main.zip
 
   prepareIPA:
+    name: Prepare IPA
     needs: installCyan
     runs-on: macos-latest
     steps:
@@ -34,6 +36,7 @@ jobs:
           echo "IPA_VERSION=$(grep -A1 '<key>CFBundleShortVersionString</key>' "$PLIST" | grep '<string>' | sed -E 's/.*>(.*)<.*/\1/')" >> $GITHUB_ENV
 
   prepareTGExtra:
+    name: Prepare TGExtra
     needs: prepareIPA
     runs-on: macos-latest
     steps:
@@ -41,7 +44,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download latest --repo waruhachi/TGExtra --pattern 'com.choco.tg_*_iphoneos-arm.deb' --dir .
+          gh release download release --repo waruhachi/TGExtra --pattern 'com.choco.tg_*_iphoneos-arm.deb' --dir .
 
       - name: Set TGEXTRA_VERSION
         run: |
@@ -50,6 +53,7 @@ jobs:
           echo "TGEXTRA_VERSION=$TGV" >> $GITHUB_ENV
 
   prepareSideloadFix:
+    name: Prepare SideloadFix
     needs: prepareTGExtra
     runs-on: macos-latest
     steps:
@@ -57,9 +61,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download latest --repo waruhachi/SideloadFix --pattern 'SideloadFix.dylib' --dir .
+          gh release download release --repo waruhachi/SideloadFix --pattern 'SideloadFix.dylib' --dir .
 
   inject:
+    name: Inject TGExtra & SideloadFix
     needs: prepareSideloadFix
     runs-on: macos-latest
     steps:
@@ -74,6 +79,7 @@ jobs:
           mv "$OUT_IPA" "$OUT_TIPA" artifacts/
 
   generateChecksums:
+    name: Generate Checksums
     needs: inject
     runs-on: macos-latest
     steps:
@@ -103,6 +109,7 @@ jobs:
           done
 
   updateRelease:
+    name: Update GitHub Release with IPA and TIPA
     needs: generateChecksums
     runs-on: macos-latest
     steps:
