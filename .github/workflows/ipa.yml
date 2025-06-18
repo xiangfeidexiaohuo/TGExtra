@@ -89,7 +89,7 @@ jobs:
           OUT_IPA="$OUT_BASE.ipa"
           OUT_TIPA="$OUT_BASE.tipa"
 
-          cyan -i decrypted.ipa -o "$OUT_IPA" -uwsgq -f com.choco.tg_$TGEXTRA_VERSION_iphoneos-arm.deb -f SideloadFix.dylib
+          cyan -i decrypted.ipa -o "$OUT_IPA" -uwsgq -f com.choco.tg_"$TGEXTRA_VERSION"_iphoneos-arm.deb -f SideloadFix.dylib
 
           cp "$OUT_IPA" "$OUT_TIPA"
           mkdir -p artifacts
