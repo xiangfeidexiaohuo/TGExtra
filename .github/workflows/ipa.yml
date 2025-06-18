@@ -38,6 +38,11 @@ jobs:
           echo "ipa_bundle_id=$IPA_BUNDLE_ID" >> "$GITHUB_OUTPUT"
           echo "ipa_version=$IPA_VERSION" >> "$GITHUB_OUTPUT"
 
+          echo "Extracted IPA Info:"
+          echo "  App Name: $IPA_APP_NAME"
+          echo "  Bundle ID: $IPA_BUNDLE_ID"
+          echo "  Version: $IPA_VERSION"
+
       - name: Download latest TGExtra
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -94,7 +99,7 @@ jobs:
           OUT_TIPA="$OUT_BASE.tipa"
 
 
-          cyan -i decrypted.ipa -o "$OUT_IPA" -uwsgq -f "$TGEXTRA_DEB" -f SideloadFix.dylib
+          cyan -i decrypted.ipa -o "$OUT_IPA" -uwsgq -f "$TGEXTRA_DEB" SideloadFix.dylib
 
           cp "$OUT_IPA" "$OUT_TIPA"
           mkdir -p artifacts
