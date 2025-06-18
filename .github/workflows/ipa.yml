@@ -9,17 +9,8 @@ on:
         type: string
 
 jobs:
-  installCyan:
-    name: Install cyan
-    runs-on: macos-latest
-    steps:
-      - name: Install cyan CLI
-        run: |
-          pip install --force-reinstall https://github.com/asdfzxcvbn/pyzule-rw/archive/main.zip
-
   prepareIPA:
     name: Prepare IPA
-    needs: installCyan
     runs-on: macos-latest
     steps:
       - name: Download decrypted IPA
@@ -69,6 +60,10 @@ jobs:
     needs: prepareSideloadFix
     runs-on: macos-latest
     steps:
+      - name: Install Cyan CLI
+        run: |
+          pip install --force-reinstall https://github.com/asdfzxcvbn/pyzule-rw/archive/main.zip
+
       - name: Inject TGExtra & SideloadFix into IPA
         run: |
           OUT_BASE="${IPA_BUNDLE_ID}-${IPA_VERSION}-TGExtra-${TGEXTRA_VERSION}"
