@@ -111,6 +111,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
+          path: .
           name: artifacts
           merge-multiple: true
 
@@ -123,6 +124,8 @@ jobs:
       - name: Generate Checksums
         id: metadata
         run: |
+          ls artifacts
+
           for ipa in artifacts/*.ipa; do
             if [ -f "$ipa" ]; then
               echo "### Sideload (IPA)" >> release_body.md
@@ -145,8 +148,6 @@ jobs:
             fi
           done
 
-          cat <<EOF >> release_body.md
-
       - name: Update GitHub Release
         uses: softprops/action-gh-release@v2
         env:
@@ -161,4 +162,3 @@ jobs:
           draft: false
           prerelease: false
           make_latest: true
-          append_body: true
