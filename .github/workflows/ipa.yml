@@ -103,7 +103,7 @@ jobs:
           OUT_IPA="$OUT_BASE.ipa"
           OUT_TIPA="$OUT_BASE.tipa"
 
-          cyan -i $"DECRYPTED_IPA" -o "$OUT_IPA" -uwsgq -f "$TGEXTRA_DEB" "$SIDELOADFIX_DYLIB"
+          cyan -i "$DECRYPTED_IPA" -o "$OUT_IPA" -uwsgq -f "$TGEXTRA_DEB" "$SIDELOADFIX_DYLIB"
 
           cp "$OUT_IPA" "$OUT_TIPA"
           mkdir -p artifacts
