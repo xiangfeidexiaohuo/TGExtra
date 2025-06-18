@@ -78,7 +78,7 @@ jobs:
 
   updateRelease:
     name: Update GitHub Release with IPA and TIPA
-    needs: generateChecksums
+    needs: inject
     runs-on: macos-latest
     steps:
       - name: Generate Checksums
