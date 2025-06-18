@@ -25,7 +25,7 @@ jobs:
           curl -L -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)" -o decrypted.ipa "$IPA_URL"
           unzip -q decrypted.ipa
 
-      - name: Extract bundle ID & version
+      - name: Extract Name, Bundle ID, and Version
         id: extractIPA
         run: |
           PLIST=$(ls Payload/*.app/Info.plist | head -n1)
@@ -91,15 +91,13 @@ jobs:
         run: |
           SIDELOADFIX_DYLIB="dependencies/SideloadFix.dylib"
           TGEXTRA_DEB="dependencies/com.choco.tg_${TGEXTRA_VERSION}_iphoneos-arm.deb"
+          DECRYPTED_IPA="dependencies/decrypted.ipa"
 
           OUT_BASE="$IPA_BUNDLE_ID-$IPA_VERSION-TGExtra-$TGEXTRA_VERSION"
           OUT_IPA="$OUT_BASE.ipa"
           OUT_TIPA="$OUT_BASE.tipa"
 
-          echo "TGExtra DEB: $TGEXTRA_DEB"
-          echo "SideloadFix dylib: $SIDELOADFIX_DYLIB"
-
-          cyan -i decrypted.ipa -o "$OUT_IPA" -uwsgq -f "$TGEXTRA_DEB" "$SIDELOADFIX_DYLIB"
+          cyan -i $"DECRYPTED_IPA" -o "$OUT_IPA" -uwsgq -f "$TGEXTRA_DEB" "$SIDELOADFIX_DYLIB"
 
           cp "$OUT_IPA" "$OUT_TIPA"
           mkdir -p artifacts
