@@ -140,6 +140,13 @@ jobs:
       - name: Generate Checksums
         id: metadata
         run: |
+          if [ -f release_body.md ]; then
+            sed -i '' -e "/^### $IPA_APP_NAME (Sideload)/,/^### /{ /^### $IPA_APP_NAME (Sideload)/{h;d}; /^### /!{d}; }" release_body.md
+            sed -i '' -e "/^### $IPA_APP_NAME (Sideload)/,\$d" release_body.md
+            sed -i '' -e "/^### $IPA_APP_NAME (TrollStore)/,/^### /{ /^### $IPA_APP_NAME (TrollStore)/{h;d}; /^### /!{d}; }" release_body.md
+            sed -i '' -e "/^### $IPA_APP_NAME (TrollStore)/,\$d" release_body.md
+          fi
+
           for ipa in artifacts/*.ipa; do
             if [ -f "$ipa" ]; then
               echo "### $IPA_APP_NAME (Sideload)" >> release_body.md
