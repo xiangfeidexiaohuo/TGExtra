@@ -12,6 +12,9 @@
     [super viewDidLoad];
 
     NSString *filePath = jbroot(@"/Library/Application Support/TGExtra/TGExtra.bundle/langs.json");
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+		filePath = [NSString stringWithFormat:@"%@/TGExtra.bundle/langs.json", [[NSBundle mainBundle] resourcePath]];
+    }
 
     NSError *jsonDecodeError = nil;
     NSData *data = [NSData dataWithContentsOfFile:filePath];
@@ -61,16 +64,21 @@
         NSString *localizationFilePath = [NSString stringWithFormat:@"%@/TGExtra.bundle/%@.lproj/Localizable.strings", jbroot(@"/Library/Application Support/TGExtra"), language[@"code"]];
         BOOL hasFile = [[NSFileManager defaultManager] fileExistsAtPath:localizationFilePath];
 
-		[languages addObject:@{
-			@"code": language[@"code"],
-			@"name" : language[@"name"],
-			@"flag": language[@"flag"],
-			@"path" : localizationFilePath,
-			@"isValid" : @(hasFile)}
-		];
+        if (!hasFile) {
+            localizationFilePath = [NSString stringWithFormat:@"%@/TGExtra.bundle/%@.lproj/Localizable.strings", [[NSBundle mainBundle] resourcePath], language[@"code"]];
+            hasFile = (localizationFilePath != nil);
+        }
+
+        [languages addObject:@{
+            @"code": language[@"code"],
+            @"name" : language[@"name"],
+            @"flag": language[@"flag"],
+            @"path" : localizationFilePath,
+            @"isValid" : @(hasFile)}
+        ];
     }
 
-	self.languages = [languages copy];
+    self.languages = [languages copy];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
