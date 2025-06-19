@@ -18,6 +18,9 @@ jobs:
       ipa_version: ${{ steps.extractIPA.outputs.ipa_version }}
       tgextra_version: ${{ steps.extractTGExtra.outputs.tgextra_version }}
     steps:
+      - name: Checkout TGExtra repo for TGExtra.bundle
+        uses: actions/checkout@v4
+        
       - name: Download decrypted IPA
         env:
           IPA_URL: ${{ inputs.decrypted_ipa_url }}
@@ -51,9 +54,6 @@ jobs:
           TGEXTRA_VERSION=$(echo "$FIRST" | sed -E 's/com\.choco\.tg_([0-9\.]+)_.+\.deb/\1/')
 
           echo "tgextra_version=$TGEXTRA_VERSION" >> "$GITHUB_OUTPUT"
-
-      - name: Checkout TGExtra repo for TGExtra.bundle
-        uses: actions/checkout@v4
 
       - name: Download latest SideloadFix.dylib
         env:
