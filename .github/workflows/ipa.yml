@@ -119,7 +119,7 @@ jobs:
 
   updateRelease:
     name: Update GitHub Release
-    needs: inject
+    needs: [inject, prepareDependencies]
     runs-on: macos-latest
     env:
       IPA_APP_NAME: ${{ needs.prepareDependencies.outputs.ipa_app_name }}
