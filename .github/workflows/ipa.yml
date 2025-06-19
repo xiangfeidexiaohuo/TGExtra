@@ -52,6 +52,9 @@ jobs:
 
           echo "tgextra_version=$TGEXTRA_VERSION" >> "$GITHUB_OUTPUT"
 
+      - name: Checkout TGExtra repo for TGExtra.bundle
+        uses: actions/checkout@v4
+
       - name: Download latest SideloadFix.dylib
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -64,8 +67,9 @@ jobs:
           name: dependencies
           path: |
             decrypted.ipa
-            com.choco.tg_*_iphoneos-arm.deb
+            TGExtra.bundle
             SideloadFix.dylib
+            com.choco.tg_*_iphoneos-arm.deb
 
   inject:
     name: Inject TGExtra & SideloadFix
@@ -89,21 +93,16 @@ jobs:
 
       - name: Inject TGExtra & SideloadFix into IPA
         run: |
-          SIDELOADFIX_DYLIB="dependencies/SideloadFix.dylib"
-          TGEXTRA_DEB="dependencies/com.choco.tg_${TGEXTRA_VERSION}_iphoneos-arm.deb"
           DECRYPTED_IPA="dependencies/decrypted.ipa"
-
-          echo "SIDELOADFIX_DYLIB: $SIDELOADFIX_DYLIB"
-          echo "TGEXTRA_DEB: $TGEXTRA_DEB"
-          echo "DECRYPTED_IPA: $DECRYPTED_IPA"
-
-          ls dependencies
+          SIDELOADFIX_DYLIB="dependencies/SideloadFix.dylib"
+          TGEXTRA_BUNDLE="dependencies/TGExtra.bundle"
+          TGEXTRA_DEB="dependencies/com.choco.tg_${TGEXTRA_VERSION}_iphoneos-arm.deb"
 
           OUT_BASE="$IPA_BUNDLE_ID-$IPA_VERSION-TGExtra-$TGEXTRA_VERSION"
           OUT_IPA="$OUT_BASE.ipa"
           OUT_TIPA="$OUT_BASE.tipa"
 
-          cyan -i "$DECRYPTED_IPA" -o "$OUT_IPA" -uwsgq -f "$TGEXTRA_DEB" "$SIDELOADFIX_DYLIB"
+          cyan -i "$DECRYPTED_IPA" -o "$OUT_IPA" -uwsgqf "$TGEXTRA_DEB" "$SIDELOADFIX_DYLIB" "$TGEXTRA_BUNDLE"
 
           cp "$OUT_IPA" "$OUT_TIPA"
           mkdir -p artifacts
