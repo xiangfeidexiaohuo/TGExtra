@@ -141,10 +141,14 @@ jobs:
         id: metadata
         run: |
           if [ -f release_body.md ]; then
-            sed -i '' -e "/^### $IPA_APP_NAME (Sideload)/,/^### /{ /^### $IPA_APP_NAME (Sideload)/{h;d}; /^### /!{d}; }" release_body.md
-            sed -i '' -e "/^### $IPA_APP_NAME (Sideload)/,\$d" release_body.md
-            sed -i '' -e "/^### $IPA_APP_NAME (TrollStore)/,/^### /{ /^### $IPA_APP_NAME (TrollStore)/{h;d}; /^### /!{d}; }" release_body.md
-            sed -i '' -e "/^### $IPA_APP_NAME (TrollStore)/,\$d" release_body.md
+            awk -v sideload="### $IPA_APP_NAME (Sideload)" -v troll="### $IPA_APP_NAME (TrollStore)" '
+              BEGIN { skip=0 }
+              {
+                if ($0 == sideload || $0 == troll) { skip=1 }
+                if (skip && /^### / && $0 != sideload && $0 != troll) { skip=0 }
+                if (!skip) print $0
+              }
+            ' release_body.md > release_body.tmp && mv release_body.tmp release_body.md
           fi
 
           for ipa in artifacts/*.ipa; do
