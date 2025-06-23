@@ -118,7 +118,7 @@ jobs:
 
   patch:
     name: Patch injected IPA
-    needs: inject
+    needs: [prepareDependencies, inject]
     runs-on: macos-latest
     env:
       IPA_BUNDLE_ID: ${{ needs.prepareDependencies.outputs.ipa_bundle_id }}
