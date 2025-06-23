@@ -136,11 +136,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download latest --repo asdfzxcvbn/ipapatch --pattern 'ipapatch.macos-arm64' --dir .
+          TAG=$(gh api repos/asdfzxcvbn/ipapatch/releases/latest --jq .tag_name)
+          ARCH=$(uname -m)
+          if [[ "$ARCH" == "arm64" ]]; then
+            ASSET="ipapatch.macos-arm64"
+          else
+            ASSET="ipapatch.macos-amd64"
+          fi
 
-          mv ipapatch_darwin_amd64 ipapatch
+          gh release download "$TAG" --repo asdfzxcvbn/ipapatch --pattern "$ASSET" --dir .
+
+          mv "$ASSET" ipapatch
           chmod +x ipapatch
-          echo "${{ github.workspace }}/ipapatch" >> $GITHUB_PATH
+          echo "${GITHUB_WORKSPACE}/ipapatch" >> $GITHUB_PATH
 
       - name: Patch injected IPA
         run: |
