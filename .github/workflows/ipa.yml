@@ -133,6 +133,8 @@ jobs:
           merge-multiple: true
 
       - name: Install ipapatch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release download latest --repo asdfzxcvbn/ipapatch --pattern 'ipapatch.macos-arm64' --dir .
 
