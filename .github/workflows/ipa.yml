@@ -18,9 +18,9 @@ jobs:
       ipa_version: ${{ steps.extractIPA.outputs.ipa_version }}
       tgextra_version: ${{ steps.extractTGExtra.outputs.tgextra_version }}
     steps:
-      - name: Checkout TGExtra repo for TGExtra.bundle
+      - name: Fetch TGExtra.bundle
         uses: actions/checkout@v4
-        
+
       - name: Download decrypted IPA
         env:
           IPA_URL: ${{ inputs.decrypted_ipa_url }}
@@ -108,26 +108,67 @@ jobs:
           mkdir -p artifacts
           mv "$OUT_IPA" "$OUT_TIPA" artifacts/
 
-      - name: Upload Artifacts
+      - name: Upload injected IPA
         uses: actions/upload-artifact@v4
         with:
-          name: artifacts
+          name: injected-artifacts
+          path: |
+            artifacts/*.ipa
+            artifacts/*.tipa
+
+  patch:
+    name: Patch injected IPA
+    needs: inject
+    runs-on: macos-latest
+    env:
+      IPA_BUNDLE_ID: ${{ needs.prepareDependencies.outputs.ipa_bundle_id }}
+      IPA_VERSION: ${{ needs.prepareDependencies.outputs.ipa_version }}
+      TGEXTRA_VERSION: ${{ needs.prepareDependencies.outputs.tgextra_version }}
+    steps:
+      - name: Download injected IPA
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          name: injected-artifacts
+          merge-multiple: true
+
+      - name: Install ipapatch
+        run: |
+          gh release download latest --repo asdfzxcvbn/ipapatch --pattern 'ipapatch.macos-arm64' --dir .
+
+          mv ipapatch_darwin_amd64 ipapatch
+          chmod +x ipapatch
+          echo "${{ github.workspace }}/ipapatch" >> $GITHUB_PATH
+
+      - name: Patch injected IPA
+        run: |
+          OUT_BASE="$IPA_BUNDLE_ID-$IPA_VERSION-TGExtra-$TGEXTRA_VERSION"
+          INJECTED_IPA="artifacts/$OUT_BASE.ipa"
+          INJECTED_TIPA="artifacts/$OUT_BASE.tipa"
+
+          ipapatch --inplace --noconfirm --input "$DECRYPTED_IPA"
+          ipapatch --inplace --noconfirm --input "$DECRYPTED_TIPA"
+
+      - name: Upload injected IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: patched-artifacts
           path: |
             artifacts/*.ipa
             artifacts/*.tipa
 
   updateRelease:
     name: Update GitHub Release
-    needs: [inject, prepareDependencies]
+    needs: [prepareDependencies, inject, patch]
     runs-on: macos-latest
     env:
       IPA_APP_NAME: ${{ needs.prepareDependencies.outputs.ipa_app_name }}
     steps:
-      - name: Download artifacts
+      - name: Download injected IPA
         uses: actions/download-artifact@v4
         with:
           path: artifacts
-          name: artifacts
+          name: patched-artifacts
           merge-multiple: true
 
       - name: Fetch existing release body
