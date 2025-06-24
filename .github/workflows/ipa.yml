@@ -164,8 +164,8 @@ jobs:
           INJECTED_IPA="artifacts/$OUT_BASE.ipa"
           INJECTED_TIPA="artifacts/$OUT_BASE.tipa"
 
-          ipapatch --input "$INJECTED_IPA" --dylib "$SIDELOADFIX_DYLIB" --inplace --noconfirm
-          ipapatch --input "$INJECTED_TIPA" --dylib "$SIDELOADFIX_DYLIB" --inplace --noconfirm
+          ipapatch --input "$INJECTED_IPA" --inplace --noconfirm
+          ipapatch --input "$INJECTED_TIPA" --inplace --noconfirm
 
       - name: Upload injected IPA
         uses: actions/upload-artifact@v4
