@@ -146,9 +146,10 @@ jobs:
 
           gh release download "$TAG" --repo asdfzxcvbn/ipapatch --pattern "$ASSET" --dir .
 
-          mv "$ASSET" ipapatch
-          chmod +x ipapatch
-          echo "export PATH=\$PATH:${GITHUB_WORKSPACE}/ipapatch" >> $GITHUB_ENV
+          mkdir -p bin
+          mv "$ASSET" bin/ipapatch
+          chmod +x bin/ipapatch
+          echo "PATH=$GITHUB_WORKSPACE/bin:$PATH" >> $GITHUB_ENV
 
       - name: Patch injected IPA
         run: |
