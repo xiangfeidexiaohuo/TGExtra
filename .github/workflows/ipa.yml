@@ -94,7 +94,6 @@ jobs:
       - name: Inject TGExtra & SideloadFix into IPA
         run: |
           DECRYPTED_IPA="dependencies/decrypted.ipa"
-          SIDELOADFIX_DYLIB="dependencies/SideloadFix.dylib"
           TGEXTRA_BUNDLE="dependencies/TGExtra.bundle"
           TGEXTRA_DEB="dependencies/com.choco.tg_${TGEXTRA_VERSION}_iphoneos-arm.deb"
 
@@ -102,7 +101,7 @@ jobs:
           OUT_IPA="$OUT_BASE.ipa"
           OUT_TIPA="$OUT_BASE.tipa"
 
-          cyan -i "$DECRYPTED_IPA" -o "$OUT_IPA" -uwsgqf "$TGEXTRA_DEB" "$SIDELOADFIX_DYLIB" "$TGEXTRA_BUNDLE"
+          cyan -i "$DECRYPTED_IPA" -o "$OUT_IPA" -uwsgqf "$TGEXTRA_DEB" "$TGEXTRA_BUNDLE"
 
           cp "$OUT_IPA" "$OUT_TIPA"
           mkdir -p artifacts
@@ -125,6 +124,13 @@ jobs:
       IPA_VERSION: ${{ needs.prepareDependencies.outputs.ipa_version }}
       TGEXTRA_VERSION: ${{ needs.prepareDependencies.outputs.tgextra_version }}
     steps:
+      - name: Download dependencies
+        uses: actions/download-artifact@v4
+        with:
+          path: dependencies
+          name: dependencies
+          merge-multiple: true
+
       - name: Download injected IPA
         uses: actions/download-artifact@v4
         with:
@@ -154,11 +160,12 @@ jobs:
       - name: Patch injected IPA
         run: |
           OUT_BASE="$IPA_BUNDLE_ID-$IPA_VERSION-TGExtra-$TGEXTRA_VERSION"
+          SIDELOADFIX_DYLIB="dependencies/SideloadFix.dylib"
           INJECTED_IPA="artifacts/$OUT_BASE.ipa"
           INJECTED_TIPA="artifacts/$OUT_BASE.tipa"
 
-          ipapatch --input "$INJECTED_IPA" --inplace --noconfirm
-          ipapatch --input "$INJECTED_TIPA" --inplace --noconfirm
+          ipapatch --input "$INJECTED_IPA" --dylib "$SIDELOADFIX_DYLIB" --inplace --noconfirm
+          ipapatch --input "$INJECTED_TIPA" --dylib "$SIDELOADFIX_DYLIB" --inplace --noconfirm
 
       - name: Upload injected IPA
         uses: actions/upload-artifact@v4
