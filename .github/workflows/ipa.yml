@@ -148,7 +148,7 @@ jobs:
 
           mv "$ASSET" ipapatch
           chmod +x ipapatch
-          echo "${GITHUB_WORKSPACE}/ipapatch" >> $GITHUB_PATH
+          echo "export PATH=\$PATH:${GITHUB_WORKSPACE}/ipapatch" >> $GITHUB_ENV
 
       - name: Patch injected IPA
         run: |
